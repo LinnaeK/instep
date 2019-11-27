@@ -1,3 +1,5 @@
+const User = require('../../models/user')
+
 module.exports = {
     isLoggedIn,
     isAdmin,
@@ -15,6 +17,6 @@ function isLoggedIn(req, res, next){
     if (req.isAuthenticated()){
       let user = User.find({googleId: req.user.googleId})
       if (user.isAdmin) return next() 
-      res.redirect('401')
+      res.redirect('/loggedin/teacher')
     } 
   }
