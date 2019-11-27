@@ -6,6 +6,7 @@ module.exports = {
 
 
 function index(req, res, next) {
+  console.log('teacher controller')
     res.render('teachers/index',{
       user: req.user,
       name: req.query.name,
