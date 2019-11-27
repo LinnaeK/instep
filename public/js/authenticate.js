@@ -1,5 +1,5 @@
-const User = require('../../models/user')
 
+const User = require('../../models/user')
 module.exports = {
     isLoggedIn,
     isAdmin,
@@ -15,8 +15,11 @@ function isLoggedIn(req, res, next){
   function isAdmin(req, res, next){
     console.log('is admin')
     if (req.isAuthenticated()){
-      let user = User.find({googleId: req.user.googleId})
-      if (user.isAdmin) return next() 
-      res.redirect('/loggedin/teacher')
+      console.log(req.user.googleId)
+      User.findOne({googleId: req.user.googleId}, function(err, user){
+        console.log('user isAdmin : ', user.isAdmin)
+        if (user.isAdmin) return next();
+        res.redirect('/loggedin/teacher')
+      })
     } 
   }

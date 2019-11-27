@@ -4,7 +4,7 @@ var userSchema = new mongoose.Schema({
     name: String,
     email: String,
     googleId: String,
-    isAdmin: false,
+    isAdmin: {type: Boolean, default: false},
   }, {
     timestamps: true
   });
