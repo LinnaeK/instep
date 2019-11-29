@@ -7,5 +7,6 @@ function index(req, res, next) {
     res.render('admin/index',{
       user: req.user,
       name: req.query.name,
+      title: 'Admin Page'
     })
   }

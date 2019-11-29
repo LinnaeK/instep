@@ -1,0 +1,13 @@
+<%-include('../partials/header') %>
+<h2>All Students</h2>
+
+<%if(students.length){%>
+    <%students.forEach(function(s){%>
+            <form action="/students/<%=s._id%>?_method=DELETE" method = "POST"
+                class = "delete-form">
+                <button type = "submit">x</button>
+              </form>
+            <a href="students/<%=s._id%>"><%=s.firstName%> <%=s.lastName%></a>
+    <%})%>
+<%}%>
+<%- include('../partials/footer') %>  

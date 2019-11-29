@@ -3,13 +3,10 @@ const Schema = Mongoose.Schema
 
 var lessonSchema = require('./lesson').schema
 
-var userSchema = new Schema({
+var studentSchema = new Schema({
     firstName: String,
     lastName: String,
     email: String,
-    googleId: String,
-    isAdmin: {type: Boolean, default: false},
-    isTeacher: {type: Boolean, default: true},
     lessons: [lessonSchema],
     phoneNum: String,
     email: String,
@@ -18,8 +15,11 @@ var userSchema = new Schema({
     state: String,
     zip: Number,
     instruments: [],
+    teacher: Schema.Types.ObjectId,
+    birthdate: String,
+    startDate: Date,
   }, {
     timestamps: true
   });
   
-  module.exports = Mongoose.model('user', userSchema);
+  module.exports = Mongoose.model('Student', studentSchema);

@@ -1,0 +1,15 @@
+<%-include('../partials/header') %>
+<h2>Teacher Page</h2>
+<%if(teacher){%>
+    <%=teacher.firstName%> <%=teacher.lastName%>
+    <%=teacher.streetAdd%>
+    <%=teacher.city%> <%=teacher.state%>  <%=teacher.zip%>
+    <%=teacher.phoneNum%>
+    <%=teacher.email%>
+    <%=teacher.instruments%>
+    <%students.forEach(function(s){%>
+        <%=s.firstName + ' ' + s.lastName%>
+    <%})%>
+<%}%>
+<a href="/teachers/<%=teacher._id%>/edit"><button>Edit Profile</button></a>
+<%- include('../partials/footer') %>

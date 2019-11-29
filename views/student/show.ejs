@@ -1,0 +1,15 @@
+<%-include('../partials/header') %>
+<h2>Student Page</h2>
+<%if(student){%>
+    <%=student.firstName%> <%=student.lastName%>
+    <%=student.streetAdd%>
+    <%=student.city%> <%=student.state%>  <%=student.zip%>
+    <%=student.phoneNum%>
+    <%=student.email%>
+    <%=student.instruments%>
+    <%students.teacher%>
+    <%students.startdate%>
+    <%students.birthdate%>
+<%}%>
+<a href="/students/<%=student._id%>/edit"><button>Edit Profile</button></a>
+<%- include('../partials/footer') %>
