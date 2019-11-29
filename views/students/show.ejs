@@ -7,9 +7,10 @@
     <%=student.phoneNum%>
     <%=student.email%>
     <%=student.instruments%>
-    <%student.teacher%>
-    <%student.startdate%>
-    <%student.birthdate%>
+    <%=teacher.firstName%> 
+    <%=teacher.lastName%> 
+    <%=student.startdate%>
+    <%=student.birthdate%>
 <%}%>
 <a href="/students/<%=student._id%>/edit"><button>Edit Profile</button></a>
 <%- include('../partials/footer') %>

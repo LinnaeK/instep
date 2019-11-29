@@ -34,21 +34,21 @@
 </div>
 <div class="form-group">
         <label>Teacher:</label>
-        <select name="teacher" value=<%=student.teacher%></select>>
+        <select name="teacher" value=<%=student.teacher%>>
             <%teachers.forEach(function(t){%>
                 <option value="<%=t._id%>"
-                    <%=student.teacher===t._id ? 'selected' : ''%>>
+                    <%=student.teacher.equals(t._id) ? 'selected' : ''%>>
                     <%=t.firstName%> <%=t.lastName%></option>
             <%})%>
         </select>
     </div>
 <div class="form-group">
     <label>Birth date:</label>
-    <input type="date" class="form-control" name="instruments" value=<%=student.birthdate%>>
+    <input type="date" class="form-control" name="birthdate" value=<%=student.birthdate%>>
 </div>
 <div class="form-group">
     <label>Start date:</label>
-    <input type="date" class="form-control" name="instruments" value=<%=student.startdate%>>
+    <input type="date" class="form-control" name="startDate" value=<%=student.startDate%>>
 </div>
 <button class="btn btn-primary" type="submit">Submit form</button>
 </form>

@@ -23,11 +23,14 @@ function index(req, res){
 
 function show(req, res){
   Student.findById(req.params.id, function(err, student){
-    if(err){res.redirect('loggedin')}
-    res.render('students/show', {
-      user: req.user,
-      title: student.firstName + ' ' + student.lastName,
-      student
+    User.findById(student.teacher, function(err, teacher){
+      if(err){res.redirect('loggedin')}
+      res.render('students/show', {
+        user: req.user,
+        title: student.firstName + ' ' + student.lastName,
+        student, 
+        teacher
+      })
     })
   })
 }
@@ -36,13 +39,14 @@ function newStudent(req, res){
   User.find({isTeacher: true}, function(err, teachers){
     res.render('students/new', {
       title: 'Add student',
-    user: req.user,
-    teachers
+      user: req.user,
+      teachers
+    })
   })
-  })
-  }
+}
 
 function create(req, res){
+  console.log(req.body)
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
@@ -57,6 +61,9 @@ function edit(req, res){
   console.log(req.params.id)
   Student.findById(req.params.id,function(err, student){
     User.find({isTeacher: true}, function(err, teachers){
+      teachers.forEach(function(t){
+        console.log(t.firstName, student.teacher.equals(t._id))
+      })
     console.log(student)
     res.render('students/edit', {
       student,
