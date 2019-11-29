@@ -33,9 +33,15 @@
     <input type="text" class="form-control" name="instruments" value=<%=student.instruments%>>
 </div>
 <div class="form-group">
-    <label>Teacher:</label>
-    <input type="text" class="form-control" name="instruments" value=<%=student.teacher%>>
-</div>
+        <label>Teacher:</label>
+        <select name="teacher" value=<%=student.teacher%></select>>
+            <%teachers.forEach(function(t){%>
+                <option value="<%=t._id%>"
+                    <%=student.teacher===t._id ? 'selected' : ''%>>
+                    <%=t.firstName%> <%=t.lastName%></option>
+            <%})%>
+        </select>
+    </div>
 <div class="form-group">
     <label>Birth date:</label>
     <input type="date" class="form-control" name="instruments" value=<%=student.birthdate%>>

@@ -36,8 +36,14 @@
     <label>Instruments:</label>
     <input type="text" class="form-control" name="instruments">
 </div>
-<button class="btn btn-primary" type="submit">Submit form</button>
-</form>
+<div class="form-group">
+    <label>Teacher:</label>
+    <select name="teacher">
+        <%teachers.forEach(function(t){%>
+            <option value="<%=t._id%>"><%=t.firstName%> <%=t.lastName%></option>
+        <%})%>
+    </select>
+</div>
 <div class="form-group">
     <label>Start date:</label>
     <input type="date" class="form-control" name="startdate">
@@ -46,4 +52,6 @@
     <label>Birth date</label>
     <input type="date" class="form-control" name="birthdate">
 </div>
+<button class="btn btn-primary" type="submit">Submit form</button>
+</form>
 <%- include('../partials/footer') %>

@@ -3,7 +3,6 @@ const Student = require('../models/student')
 
 module.exports = {
   index,
-  dailyview,
   show,
   new: newStudent,
   create,
@@ -28,24 +27,27 @@ function show(req, res){
     res.render('students/show', {
       user: req.user,
       title: student.firstName + ' ' + student.lastName,
-      students,
+      student
     })
   })
 }
 
 function newStudent(req, res){
-  res.render('students/new', {
-    title: 'Add student',
-  user: req.user,
-})
-}
+  User.find({isTeacher: true}, function(err, teachers){
+    res.render('students/new', {
+      title: 'Add student',
+    user: req.user,
+    teachers
+  })
+  })
+  }
 
 function create(req, res){
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
-  var user = new User(req.body)
-  user.save(function(err){
+  var student = new Student(req.body)
+  student.save(function(err){
     if(err) return res.redirect('students/new')
     res.redirect('/loggedin/admin')
   })
@@ -54,10 +56,14 @@ function create(req, res){
 function edit(req, res){
   console.log(req.params.id)
   Student.findById(req.params.id,function(err, student){
+    User.find({isTeacher: true}, function(err, teachers){
     console.log(student)
     res.render('students/edit', {
       student,
-      title: 'Edit '+ student.firstName +' '+ student.lastName
+      title: 'Edit '+ student.firstName +' '+ student.lastName,
+      user: req.user,
+      teachers
+    })
     })
 })
 }
