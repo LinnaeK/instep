@@ -1,0 +1,14 @@
+<%-include('../partials/header') %>
+<%=teacher%>
+<%if(students.length){%>
+    <%students.forEach(function(s){%>
+        <%if(user.isAdmin){%>
+        <form action="/students/<%=s._id%>?_method=DELETE" method = "POST"
+            class = "delete-form">
+            <button type = "submit">x</button>
+          </form>
+        <%}%>
+        <a href="/students/<%=s._id%>"><%=s.firstName%> <%=s.lastName%></a>
+    <%})%>
+<%}%>
+<%-include('../partials/footer') %>

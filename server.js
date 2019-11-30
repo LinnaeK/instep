@@ -40,8 +40,8 @@ app.use(methodOverride('_method'))
 
 app.use('/', indexRouter);
 app.use('/', loggedinRouter);
-app.use('/', teachersRouter);
-app.use('/', studentsRouter);
+app.use('/teachers', teachersRouter);
+app.use('/students', studentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

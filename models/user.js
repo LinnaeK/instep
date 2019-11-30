@@ -2,6 +2,7 @@ const Mongoose = require('mongoose')
 const Schema = Mongoose.Schema
 
 var lessonSchema = require('./lesson').schema
+var studentSchema = require('./student').schema
 
 var userSchema = new Schema({
     firstName: String,
@@ -18,6 +19,7 @@ var userSchema = new Schema({
     state: String,
     zip: Number,
     instruments: [],
+    students:[studentSchema],
   }, {
     timestamps: true
   });

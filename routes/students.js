@@ -7,12 +7,12 @@ var User = require('../models/user')
 var auth = require('../public/js/authenticate')
 
 /* GET users listing. */
-router.get('/students/new', auth.isAdmin, studentsCntrl.new)
-router.get('/students', auth.isAdmin, studentsCntrl.index)
-router.get('/students/:id/edit', auth.isLoggedIn, studentsCntrl.edit)
-router.get('/students/:id', auth.isLoggedIn, studentsCntrl.show)
-router.put('/students/:id', auth.isLoggedIn, studentsCntrl.update)
-router.post('/students', auth.isAdmin, studentsCntrl.create)
-router.delete('/students/:id', auth.isAdmin, studentsCntrl.delete)
+router.get('/new', auth.isAdmin, studentsCntrl.new)
+router.get('/', auth.isAdmin, studentsCntrl.index)
+router.get('/:id/edit', auth.isLoggedIn, studentsCntrl.edit)
+router.get('/:id', auth.isLoggedIn, studentsCntrl.show)
+router.put('/:id', auth.isLoggedIn, studentsCntrl.update)
+router.post('/', auth.isAdmin, studentsCntrl.create)
+router.delete('/:id', auth.isAdmin, studentsCntrl.delete)
 
 module.exports = router;

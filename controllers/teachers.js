@@ -10,6 +10,7 @@ module.exports = {
   edit,
   update,
   delete: deleteTeacher,
+  showstudents,
 }
 
 function index(req, res){
@@ -87,4 +88,19 @@ function deleteTeacher(req, res){
   User.deleteOne({_id: req.params.id}, function(err, obj){})
   console.log('deleted teacher')
   res.redirect('/teachers')
+}
+
+function showstudents(req, res){
+  User.findById(req.params.id, function(err, teacher){
+    console.log(teacher)
+    Student.find({teacher:req.params.id}, function(err, students){
+      console.log(students.length)
+      res.render('teachers/students', {
+        user: req.user,
+        teacher,
+        students,
+        title: 'Students of ' + teacher.firstName + teacher.lastName
+      })
+    })
+  })
 }
