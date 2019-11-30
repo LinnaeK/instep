@@ -1,0 +1,17 @@
+<%-include('../partials/header') %>
+<%if(studio){%>
+    <h2><%=studio.name%></h2>
+    <%=studio.streetAdd%>
+    <%=studio.city%> <%=studio.state%>  <%=studio.zip%>
+    <%=studio.phoneNum%>
+    <%=studio.email%>
+    <h3>Teachers</h3>
+    <%teachers.forEach(function(teacher){%>
+        <%=teacher.firstName%> 
+        <%=teacher.lastName%> 
+    <%})%>
+<%}%>
+<%if(user.isAdmin){%>
+    <a href="/studios/<%=studio._id%>/edit"><button>Edit Studio</button></a>
+<%}%>
+<%- include('../partials/footer') %>

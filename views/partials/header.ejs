@@ -18,27 +18,34 @@
                 </button>
             <div id="navbarCollapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav nav-fill w-100">
-                            <li class="nav-item">
-            <a class="nav-link text-white"  href="/studio">Studio</a>
-            </li>
-            <%if (user.isAdmin){%>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white"  href="/teachers" data-toggle="dropdown" >Teachers</a>
+                        <%if (user.isAdmin){%>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white"  href="/studios" data-toggle="dropdown" >Studios</a>
                                 <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/teachers/new">Add Teacher</a>
-                            <a class="dropdown-item" href="/teachers">All Teachers</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white"  href="/students" data-toggle="dropdown" >Students</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/students/new">Add Student</a>
-                            <a class="dropdown-item" href="/students">All Students</a>
-                        </div>
-                    </li>
-                    <%}else{%>
-                        <li class="nav-item">
-                            <a class="nav-link text-white"  href="/teachers/<%=user._id%>/students">Students</a>
+                                    <a class="dropdown-item" href="/studios/new">Add Studio</a>
+                                    <a class="dropdown-item" href="/studios">All Studio</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white"  href="/teachers" data-toggle="dropdown" >Teachers</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/teachers/new">Add Teacher</a>
+                                    <a class="dropdown-item" href="/teachers">All Teachers</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white"  href="/students" data-toggle="dropdown" >Students</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/students/new">Add Student</a>
+                                    <a class="dropdown-item" href="/students">All Students</a>
+                                </div>
+                            </li>
+                            <%}else{%>
+                                <li class="nav-item">
+                <a class="nav-link text-white"  href="/studio">Studio</a>
+                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white"  href="/teachers/<%=user._id%>/students">Students</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white"  href="/teachers/<%=user._id%>">Profile</a>

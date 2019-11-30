@@ -6,6 +6,8 @@ var roomSchema = require('./room').schema
 
 var studioSchema = new Schema({
     name: String,
+    phoneNum: String,
+    email: String,
     streetAdd: String,
     city: String,
     state: String,

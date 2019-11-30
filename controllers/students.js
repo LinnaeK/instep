@@ -52,7 +52,7 @@ function create(req, res){
   }
   var student = new Student(req.body)
   student.save(function(err){
-    if(err) return res.redirect('students/new')
+    if(err) return res.redirect('/students/new')
     res.redirect('/loggedin/admin')
   })
 }
