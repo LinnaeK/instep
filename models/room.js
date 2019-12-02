@@ -4,6 +4,7 @@ const Schema = Mongoose.Schema
 var roomSchema = new Schema({
     name: String,
     lessons: [Schema.Types.ObjectId],
+    studio: Schema.Types.ObjectId
   }, {
     timestamps: true
   })

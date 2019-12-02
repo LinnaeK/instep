@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const Student = require('../models/student')
 const Studio = require('../models/studio')
+const Room = require('../models/room')
 
 module.exports = {
   index,
@@ -23,17 +24,25 @@ function index(req, res){
 }
 
 function show(req, res){
-  Studio.findById(req.params.id, function(err, studio){
-    User.find({isTeacher: true}, function(err, teachers){
-      if(err){res.redirect('loggedin')}
-      res.render('studios/show', {
-        user: req.user,
-        title: studio.name,
-        studio, 
-        teachers
-      })
+  Studio.findById(req.params.id)
+  .populate('teachers').exec(function(err, studio) {
+    User.find({_id: {$in: studio.teachers}})
+    .exec(function(err, teachers){
+      Studio.findById(req.params.id)
+      .populate('Room').exec(function(err, rooms){
+        Room.find({_id: {$in: studio.rooms}})
+        console.log("rooms: ", studio.rooms)
+        console.log(studio.rooms.length)
+        res.render('studios/show', {
+          user: req.user,
+          title: studio.name,
+          studio, 
+          teachers, 
+          rooms
+        })
     })
-    })
+  })
+})
 }
 
 function newStudio(req, res){

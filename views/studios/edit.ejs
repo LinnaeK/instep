@@ -2,37 +2,38 @@
 <form id="new-form" action="/studios/<%=studio._id%>?_method=PUT" method = "POST" autocomplet="off">
 <div class="form-group">
     <label>Name:</label>
-    <input type="text" class="form-control" name="firstName" value=<%=studio.name%>>
+    <input type="text" class="form-control" name="firstName" value="<%=studio.name%>">
 </div>
 <div class="form-group">
     <label>E-mail:</label>
-    <input type="text" class="form-control" name="email" value=<%=studio.email%>>
+    <input type="text" class="form-control" name="email" value="<%=studio.email%>">
 </div>
 <div class="form-group">
     <label>Street Address:</label>
-    <input type="text" class="form-control" name="streetAdd" value=<%=studio.streetAdd%>>
+    <input type="text" class="form-control" name="streetAdd" value="<%=studio.streetAdd%>">
 </div>
 <div class="form-group">
     <label>City:</label>
-    <input type="text" class="form-control" name="city" value=<%=studio.city%>>
+    <input type="text" class="form-control" name="city" value="<%=studio.city%>">
 </div>
 <div class="form-group">
     <label>State:</label>
-    <input type="text" class="form-control" name="state" value=<%=studio.state%>>
+    <input type="text" class="form-control" name="state" value="<%=studio.state%>">
 </div>
 <div class="form-group">
     <label>Zip:</label>
-    <input type="number" class="form-control" name="zip" value=<%=studio.zip%>>
+    <input type="number" class="form-control" name="zip" value="<%=studio.zip%>">
 </div>
 <div class="form-group">
         <label>Teachers:</label>
-        <select name="teacher" value=<%=studio.teachers%>>
+        <%console.log(studio.teachers)%>
             <%teachers.forEach(function(t){%>
                 <div class="form-check">
+                    <%console.log(t._id)%>
                     <%if(studio.teachers.includes(t._id)){%>
-                        <input class="form-check-input" type="checkbox" value="<%=t._id%>" id="defaultCheck1" checked>
+                        <input name = "teachers" class="form-check-input" type="checkbox" value="<%=t._id%>" id="defaultCheck1" checked>
                     <%}else{%>
-                        <input class="form-check-input" type="checkbox" value="<%=t._id%>" id="defaultCheck1">
+                        <input name="teachers" class="form-check-input" type="checkbox" value="<%=t._id%>" id="defaultCheck1">
                         <%}%>
                       <label class="form-check-label" for="<%=t._id%>">
                         <%=t.firstName%> <%=t.lastName%>
@@ -42,5 +43,13 @@
         </select>
     </div>
 <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
+
+<form id="new-form" action="/rooms/<%=studio._id%>" method = "POST">
+    <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
 </form>
 <%- include('../partials/footer') %>

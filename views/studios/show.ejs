@@ -14,4 +14,22 @@
 <%if(user.isAdmin){%>
     <a href="/studios/<%=studio._id%>/edit"><button>Edit Studio</button></a>
 <%}%>
+
+<h3>Rooms</h3>
+
+<%if(studio.rooms.length){%>
+    <%studio.rooms.forEach(function(room){%>
+        <%=room.name%>
+    <%})%>
+<%}%>
+
+<br><br>
+<h4>Add Room</h4>
+<form id="new-form" action="/rooms/<%=studio._id%>" method = "POST">
+    <div class="form-group">
+            <label>Room Name:</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
 <%- include('../partials/footer') %>

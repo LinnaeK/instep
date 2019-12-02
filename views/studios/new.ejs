@@ -33,7 +33,7 @@
     <select name="teacher">
         <%teachers.forEach(function(t){%>
             <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="<%=t._id%>" id="defaultCheck1">
+            <input name="teachers" class="form-check-input" type="checkbox" value="<%=t._id%>" id="defaultCheck1">
           <label class="form-check-label" for="<%=t._id%>">
             <%=t.firstName%> <%=t.lastName%>
           </label>
@@ -43,4 +43,6 @@
 </div>
 <button class="btn btn-primary" type="submit">Submit form</button>
 </form>
+
+
 <%- include('../partials/footer') %>

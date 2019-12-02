@@ -12,7 +12,7 @@ var studioSchema = new Schema({
     city: String,
     state: String,
     zip: Number,
-    teachers: [userSchema],
+    teachers: [{type: Schema.Types.ObjectId, ref: 'User'}],
     rooms: [roomSchema]
   }, {
     timestamps: true
