@@ -17,8 +17,14 @@
 
 <h3>Rooms</h3>
 
-<%if(studio.rooms.length){%>
-    <%studio.rooms.forEach(function(room){%>
+<%if(rooms.length){%>
+    <%console.log(rooms.length)%>
+    <%rooms.forEach(function(room){%>
+        <%console.log(room.name)%>
+        <form action="/rooms/<%=room._id%>?_method=DELETE" method = "POST"
+            class = "delete-form">
+            <button type = "submit">x</button>
+          </form>
         <%=room.name%>
     <%})%>
 <%}%>

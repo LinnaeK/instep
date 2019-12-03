@@ -85,9 +85,10 @@ function update(req, res){
 }
 
 function deleteTeacher(req, res){
-  User.deleteOne({_id: req.params.id}, function(err, obj){})
-  console.log('deleted teacher')
-  res.redirect('/teachers')
+  User.deleteOne({_id: req.params.id}, function(err, obj){}).then(function(){
+    console.log('deleted teacher')
+    res.redirect('/teachers')
+  })
 }
 
 function showstudents(req, res){

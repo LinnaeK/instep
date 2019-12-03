@@ -53,6 +53,12 @@ function create(req, res){
   var student = new Student(req.body)
   student.save(function(err){
     if(err) return res.redirect('/students/new')
+    User.findById(student.teacher, function(err, teacher){
+      teacher.students.push(student._id)
+      teacher.save(function(err){
+      })
+      if(err) return res.redirect('/students/new')
+    })
     res.redirect('/loggedin/admin')
   })
 }
@@ -79,6 +85,9 @@ function update(req, res){
   console.log('arrive at update in student')
   Student.findByIdAndUpdate(req.params.id, req.body, 
     {new: true}).then(function(){
+      User.findById(req.body.teacher, function(err, teacher){
+        teacher.students.push(req.body._id)
+      })
     res.redirect('/students')
   })
 }

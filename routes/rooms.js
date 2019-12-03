@@ -14,6 +14,6 @@ var auth = require('../public/js/authenticate')
 // router.get('/:id', auth.isLoggedIn, studentsCntrl.show)
 // router.put('/:id', auth.isLoggedIn, studentsCntrl.update)
 router.post('/:id', auth.isAdmin, roomsCntrl.create)
-// router.delete('/:id', auth.isAdmin, studentsCntrl.delete)
+router.delete('/:id', auth.isAdmin, roomsCntrl.delete)
 
 module.exports = router;

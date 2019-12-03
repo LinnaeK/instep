@@ -2,6 +2,7 @@ const Mongoose = require('mongoose')
 const Schema = Mongoose.Schema
 
 var lessonSchema = require('./lesson').schema
+var userSchema = require('./user').schema
 
 var studentSchema = new Schema({
     firstName: String,

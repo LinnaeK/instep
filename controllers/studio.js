@@ -29,16 +29,16 @@ function show(req, res){
     User.find({_id: {$in: studio.teachers}})
     .exec(function(err, teachers){
       Studio.findById(req.params.id)
-      .populate('Room').exec(function(err, rooms){
-        Room.find({_id: {$in: studio.rooms}})
-        console.log("rooms: ", studio.rooms)
-        console.log(studio.rooms.length)
-        res.render('studios/show', {
-          user: req.user,
-          title: studio.name,
-          studio, 
-          teachers, 
-          rooms
+      .populate('rooms').exec(function(err, rooms){
+        Room.find({_id:{$in: studio.rooms}})
+        .exec(function(err, rooms){
+          res.render('studios/show', {
+            user: req.user,
+            title: studio.name,
+            studio, 
+            teachers, 
+            rooms
+        })
         })
     })
   })

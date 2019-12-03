@@ -13,7 +13,7 @@ var studioSchema = new Schema({
     state: String,
     zip: Number,
     teachers: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    rooms: [roomSchema]
+    rooms: [{type: Schema.Types.ObjectId, ref: 'Room'}]
   }, {
     timestamps: true
   })

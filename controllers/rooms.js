@@ -10,7 +10,7 @@ module.exports = {
   create,
   edit,
   update,
-  delete: deleteStudent,
+  delete: deleteRoom,
 }
 
 function index(req, res){
@@ -54,7 +54,9 @@ function create(req, res){
   }
   var room = new Room(req.body)
   console.log(req.body)
+  console.log(room)
   room.studio = req.params.id
+  console.log(room)
   room.save(function(err){
     if(err) return res.redirect('/studio')
     Studio.findById(req.params.id, function(err, studio){
@@ -93,8 +95,8 @@ function update(req, res){
   })
 }
 
-function deleteStudent(req, res){
-  Student.deleteOne({_id: req.params.id}, function(err, obj){})
-  console.log('deleted student')
-  res.redirect('/students')
+function deleteRoom(req, res){
+  Room.deleteOne({_id: req.params.id}, function(err, obj){})
+  console.log('deleted room')
+  res.redirect('/')
 }

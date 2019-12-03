@@ -5,6 +5,7 @@ var lessonSchema = new Schema({
     teacher: Schema.Types.ObjectId,
     room: Schema.Types.ObjectId,
     student: Schema.Types.ObjectId,
+    googleCalendarId: String,
     date: Date,
   }, {
     timestamps: true

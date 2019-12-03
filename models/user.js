@@ -19,7 +19,7 @@ var userSchema = new Schema({
     state: String,
     zip: Number,
     instruments: [],
-    students:[studentSchema],
+    students:[{type: Schema.Types.ObjectId, ref: 'Student'}],
   }, {
     timestamps: true
   });

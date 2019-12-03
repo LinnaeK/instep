@@ -20,6 +20,7 @@ var loggedinRouter = require('./routes/loggedin');
 var studentsRouter = require('./routes/students');
 var studiosRouter = require('./routes/studio');
 var roomsRouter = require('./routes/rooms');
+var lessonsRouter = require('./routes/lessons');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,6 +47,7 @@ app.use('/teachers', teachersRouter);
 app.use('/students', studentsRouter);
 app.use('/studios', studiosRouter);
 app.use('/rooms', roomsRouter);
+app.use('/lessons', lessonsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
