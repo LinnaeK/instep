@@ -3,11 +3,13 @@
 
 <%if(students.length){%>
     <%students.forEach(function(s){%>
+      <div class = "list-items">
             <form action="/students/<%=s._id%>?_method=DELETE" method = "POST"
                 class = "delete-form">
-                <button type = "submit">x</button>
+                <button class = "btn-outline-danger btn-small" type = "submit">x</button>
               </form>
-            <a href="students/<%=s._id%>"><%=s.firstName%> <%=s.lastName%></a>
+            <a class = "list-text" href="students/<%=s._id%>"><%=s.firstName%> <%=s.lastName%></a>
+          </div>
     <%})%>
 <%}%>
 <%- include('../partials/footer') %>  

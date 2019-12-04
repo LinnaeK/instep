@@ -2,6 +2,7 @@
 <h2 class = "align">All Studios</h2>
 
 <%if(studios.length){%>
+  <div class = "studio-list"></div>
     <%studios.forEach(function(s){%>
       <div class = "list-items">
         <form action="/studios/<%=s._id%>?_method=DELETE" method = "POST"
@@ -11,5 +12,6 @@
         <a href="studios/<%=s._id%>" class = "list-text"><%=s.name%></a>
       </div>
     <%})%>
+  </div>
 <%}%>
 <%- include('../partials/footer') %>  

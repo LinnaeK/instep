@@ -1,15 +1,44 @@
 <%-include('../partials/header') %>
-<h2>Teacher Page</h2>
+<h2>Teacher Information</h2>
+<h4 class = "teacher"><%=teacher.firstName%> <%=teacher.lastName%></h4>
 <%if(teacher){%>
-    <%=teacher.firstName%> <%=teacher.lastName%>
-    <%=teacher.streetAdd%>
-    <%=teacher.city%> <%=teacher.state%>  <%=teacher.zip%>
-    <%=teacher.phoneNum%>
-    <%=teacher.email%>
-    <%=teacher.instruments%>
-    <%students.forEach(function(s){%>
-        <%=s.firstName + ' ' + s.lastName%>
-    <%})%>
+    <div class="container">
+    <div>
+        <h4 class="show-heading">Contact</h4>
+    <ul class = "list-unstyled">
+        <li>
+
+            <%=teacher.streetAdd%>
+        </li>
+        <li>
+
+            <%=teacher.city%> <%=teacher.state%>  <%=teacher.zip%>
+        </li>
+        <li>
+
+            <%=teacher.phoneNum%>
+        </li>
+        <li>
+
+            <%=teacher.email%>
+        </li>
+        <li>
+
+            <%=teacher.instruments%>
+        </li>
+        </ul>
+        <a href="/teachers/<%=teacher._id%>/edit"><button class="btn-dark">Edit Profile</button></a>
+    </div>
+        <div>
+            <h4 class="show-heading">Students</h4>
+            <ul class="list-unstyled">
+        <%students.forEach(function(s){%>
+            <li>
+                <%=s.firstName + ' ' + s.lastName%>
+            </li>
+        <%})%>
+    </ul>
+    </div>
+</div>
 <%}%>
-<a href="/teachers/<%=teacher._id%>/edit"><button>Edit Profile</button></a>
 <%- include('../partials/footer') %>

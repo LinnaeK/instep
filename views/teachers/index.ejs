@@ -3,11 +3,13 @@
 
 <%if(teachers.length){%>
     <%teachers.forEach(function(t){%>
-            <form action="/teachers/<%=t._id%>?_method=DELETE" method = "POST"
-                class = "delete-form">
-                <button type = "submit">x</button>
-              </form>
-            <a href="teachers/<%=t._id%>"><%=t.firstName%> <%=t.lastName%></a>
+      <div class="list-items">
+        <form action="/teachers/<%=t._id%>?_method=DELETE" method = "POST"
+            class = "delete-form">
+            <button class = "btn-outline-danger" type = "submit">x</button>
+          </form>
+        <a href="teachers/<%=t._id%>" class = "list-text"><%=t.firstName%> <%=t.lastName%></a>
+      </div>
     <%})%>
 <%}%>
 <%- include('../partials/footer') %>  

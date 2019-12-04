@@ -1,17 +1,49 @@
 <%-include('../partials/header') %>
 <h2>Student Page</h2>
 <%if(student){%>
-    <%=student.firstName%> <%=student.lastName%>
-    <%=student.streetAdd%>
-    <%=student.city%> <%=student.state%>  <%=student.zip%>
-    <%=student.phoneNum%>
-    <%=student.email%>
-    <%=student.instruments%>
-    <%=teacher.firstName%> 
-    <%=teacher.lastName%> 
-    <%=student.startdate%>
-    <%=student.birthdate%>
+    <h4 class = "teacher"><%=student.firstName%> <%=student.lastName%></h4>
+    <div class = "studio-list">
+    <ul class = "list-unstyled">
+        <li>
+        </li>
+        <li>
+
+            <%=student.streetAdd%>
+        </li>
+        <li>
+
+            <%=student.city%> <%=student.state%>  <%=student.zip%>
+        </li>
+        <li>
+
+            <%=student.phoneNum%>
+        </li>
+        <li>
+
+            <%=student.email%>
+        </li>
+        <li>
+
+            <%=student.instruments%>
+        </li>
+        <li>
+            Teacher: 
+            <%=teacher.firstName%> 
+            <%=teacher.lastName%> 
+        </li>
+        <li>
+            Started: <%=student.startdate%>
+        </li>
+        <li>
+
+           Student's Birthday: <%=student.birthdate%>
+        </li>
+    <br>
+
+        <a href="/students/<%=student._id%>/edit" ><button class = "btn-dark">Edit Profile</button></a>
+        <a href="/lessons/new"><button class = "btn-dark">Add Lesson</button></a>
+
+    </ul>
+    </div>
 <%}%>
-<a href="/students/<%=student._id%>/edit"><button>Edit Profile</button></a>
-<a href="/lessons/new"><button>Add Lesson</button></a>
 <%- include('../partials/footer') %>

@@ -1,4 +1,5 @@
 <%-include('../partials/header')%>
+<h2>Edit Student</h2>
 <form id="new-form" action="/students/<%=student._id%>?_method=PUT" method = "POST" autocomplet="off">
 <div class="form-group">
     <label>First Name:</label>
@@ -50,6 +51,6 @@
     <label>Start date:</label>
     <input type="date" class="form-control" name="startDate" value=<%=student.startDate%>>
 </div>
-<button class="btn btn-primary" type="submit">Submit form</button>
+<button class="btn btn-dark" type="submit">Submit Changes</button>
 </form>
 <%- include('../partials/footer') %>
