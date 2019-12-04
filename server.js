@@ -9,6 +9,8 @@ var methodOverride = require('method-override')
 
 require('dotenv').config()
 
+console.log(process.env.API_KEY)
+
 var app = express();
 
 require('./config/database')

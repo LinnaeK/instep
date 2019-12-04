@@ -1,13 +1,15 @@
 <%-include('../partials/header') %>
-<h2>All Studios</h2>
+<h2 class = "align">All Studios</h2>
 
 <%if(studios.length){%>
     <%studios.forEach(function(s){%>
-            <form action="/studios/<%=s._id%>?_method=DELETE" method = "POST"
-                class = "delete-form">
-                <button type = "submit">x</button>
-              </form>
-            <a href="studios/<%=s._id%>"><%=s.name%></a>
+      <div class = "list-items">
+        <form action="/studios/<%=s._id%>?_method=DELETE" method = "POST"
+            class = "delete-form align">
+            <button type = "submit" class = "btn btn-outline-danger btn-sm dltBtn">x</button>
+          </form>
+        <a href="studios/<%=s._id%>" class = "list-text"><%=s.name%></a>
+      </div>
     <%})%>
 <%}%>
 <%- include('../partials/footer') %>  

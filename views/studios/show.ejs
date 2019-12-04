@@ -1,41 +1,64 @@
 <%-include('../partials/header') %>
 <%if(studio){%>
-    <h2><%=studio.name%></h2>
-    <%=studio.streetAdd%>
-    <%=studio.city%> <%=studio.state%>  <%=studio.zip%>
-    <%=studio.phoneNum%>
-    <%=studio.email%>
-    <h3>Teachers</h3>
-    <%teachers.forEach(function(teacher){%>
-        <%=teacher.firstName%> 
-        <%=teacher.lastName%> 
-    <%})%>
-<%}%>
-<%if(user.isAdmin){%>
-    <a href="/studios/<%=studio._id%>/edit"><button>Edit Studio</button></a>
-<%}%>
-
+        <div class = "container">
+            <div>
+                            <h2><%=studio.name%></h2>
+                    <ul class = "list-unstyled">
+                        <li>
+                            <%=studio.streetAdd%>
+                        </li>
+                        <li>
+                            <%=studio.city%> <%=studio.state%>  <%=studio.zip%>
+                        </li>
+                        <li>
+                            <%=studio.phoneNum%>
+                        </li>
+                        <li>
+                            <%=studio.email%>
+                        </li>
+                    </ul>
+                    <%if(user.isAdmin){%>
+                        <a href="/studios/<%=studio._id%>/edit"><button class="btn-dark">Edit Studio</button></a>
+                    <%}%>
+                </div>
+                <div>
+                        <h3>Teachers</h3>
+                        <ul class = "list-unstyled">
+                            <%teachers.forEach(function(teacher){%>
+                            <li> 
+                                <%=teacher.firstName%> 
+                                <%=teacher.lastName%> 
+                            </li>
+                            <%})%>
+                        </ul>
+                    </div>
+                    <%}%>
+<div>
 <h3>Rooms</h3>
 
 <%if(rooms.length){%>
     <%console.log(rooms.length)%>
     <%rooms.forEach(function(room){%>
-        <%console.log(room.name)%>
-        <form action="/rooms/<%=room._id%>?_method=DELETE" method = "POST"
-            class = "delete-form">
-            <button type = "submit">x</button>
-          </form>
-        <%=room.name%>
+            <div class = "list-items">
+            <form action="/rooms/<%=room._id%>?_method=DELETE" method = "POST">
+                <button type = "submit" class = "btn btn-outline-danger btn-sm inline">x</button>
+              </form>
+              <span class = "inline"><%=room.name%></span>
+            </div>
     <%})%>
 <%}%>
-
+</div>
+</div>
 <br><br>
-<h4>Add Room</h4>
-<form id="new-form" action="/rooms/<%=studio._id%>" method = "POST">
+<h4 class = "center-text">Add Room</h4>
+<form class = "add-room" id="new-form" action="/rooms/<%=studio._id%>" method = "POST">
     <div class="form-group">
             <label>Room Name:</label>
             <input type="text" class="form-control" name="name">
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <div class = "form-actions">
+
+            <button class="btn btn-dark" type="submit">Add Room</button>
+        </div>
 </form>
 <%- include('../partials/footer') %>

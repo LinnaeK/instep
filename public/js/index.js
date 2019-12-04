@@ -7,7 +7,6 @@ module.exports ={
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
-const request = require('request')
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/calendar'];
@@ -20,7 +19,7 @@ const TOKEN_PATH = 'token.json';
 fs.readFile('/Users/linnaekraemer/code/instep/credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with ../../, then call the Google Calendar API.
-  authorize(JSON.parse(content), createEvent);
+  authorize(JSON.parse(content), addCalendar);
 });
 
 /**
@@ -107,16 +106,13 @@ var event = {
     'location': '800 Howard St., San Francisco, CA 94103',
     'description': 'A chance to hear more about Google\'s developer products.',
     'start': {
-      'dateTime': '2019-12-28T09:00:00-07:00',
+      'dateTime': '2020-01-15T09:00:00-08:00',
       'timeZone': 'America/Los_Angeles',
     },
     'end': {
-      'dateTime': '2019-12-28T17:00:00-07:00',
+      'dateTime': '2020-01-15T17:00:00-08:00',
       'timeZone': 'America/Los_Angeles',
     },
-    'recurrence': [
-      'RRULE:FREQ=DAILY;COUNT=2'
-    ],
     'attendees': [
       {'email': 'lpage@example.com'},
       {'email': 'sbrin@example.com'},
@@ -166,3 +162,31 @@ function isBusy(body){
     })
   }   
 }
+
+const request =require('request-promise');
+require('dotenv').config()
+
+function addCalendar(auth){
+    let options = {
+        method: 'POST',
+        uri: `https://www.googleapis.com/calendar/v3/users/me/calendarList?key=${process.env.API_KEY}`,
+        header: {
+            'Authorization': `Bearer ${auth}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        json: true,
+        body:{
+            "id": ""
+          }
+    }
+    request(options)
+        .then(function(response){
+            console.log(response)
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+}
+
+

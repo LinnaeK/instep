@@ -1,4 +1,5 @@
 <%-include('../partials/header') %>
+<h2>Create New Studio</h2>
 <form id="new-form" action="/studios" method = "POST">
 <div class="form-group">
     <label>Name:</label>
@@ -30,7 +31,6 @@
 </div>
 <div class="form-group">
     <label>Teachers:</label>
-    <select name="teacher">
         <%teachers.forEach(function(t){%>
             <div class="form-check">
             <input name="teachers" class="form-check-input" type="checkbox" value="<%=t._id%>" id="defaultCheck1">
@@ -39,9 +39,10 @@
           </label>
           </div>
         <%})%>
-    </select>
 </div>
-<button class="btn btn-primary" type="submit">Submit form</button>
+<div class="form-actions">
+    <button class="btn btn-dark btn-lrg" type="submit">Submit form</button>
+</div>
 </form>
 
 
