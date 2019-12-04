@@ -90,3 +90,17 @@ main {
   text-align: center;
   margin: 5vh 0 5vh -15vh;
 }
+
+.main-page {
+  /* display: flex; */
+  text-align: center;
+  margin: 30vh auto;
+}
+
+.main-icon {
+  font-size: 20vh;
+}
+
+.italic {
+  font-style: italic;
+}

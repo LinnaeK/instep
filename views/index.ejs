@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <script src="https://kit.fontawesome.com/ae46987b2f.js" crossorigin="anonymous"></script>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <% if (user) { %>
-      <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
-    <% } else { %>
-      <a href="/auth/google"><i ></i>Login with Google</a>
-    <% } %>
+    <div class = "main-page">
+      <i class="fas fa-drum navbar-brand main-icon"></i>
+      <h1><%= title %></h1>
+      <h3 class = "italic">Music Studio Tracker</h3>
+    <div>
+
+      <% if (user) { %>
+        <a href="/logout"><i class="material-icons left"></i>Log Out</a>
+      <% } else { %>
+        <a href="/auth/google" class="list-text"><i ></i>Login</a>
+      <% } %>
+    </div>
+    </div>
   </body>
 </html>
