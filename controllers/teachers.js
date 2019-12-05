@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const Student = require('../models/student')
 const Studio = require('../models/studio')
+const clndrFuncs = require('../public/js/calendar')
 
 module.exports = {
   index,
@@ -53,14 +54,18 @@ function newTeacher(req, res){
   res.render('teachers/new', {
     title: 'Add Teacher',
   user: req.user,
+  clndrFuncs
 })
 }
 
 function create(req, res){
+  console.log('creating teacher')
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
   var user = new User(req.body)
+  user.calendar = clndrFuncs.createCalendar(7, 24)
+  console.log('cal', user.calendar)
   user.save(function(err){
     if(err) return res.redirect('teachers/new')
     res.redirect('/loggedin/admin')
