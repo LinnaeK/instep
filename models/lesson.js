@@ -2,11 +2,16 @@ const Mongoose = require('mongoose')
 const Schema = Mongoose.Schema
 
 var lessonSchema = new Schema({
-    teacher: Schema.Types.ObjectId,
-    room: Schema.Types.ObjectId,
-    student: Schema.Types.ObjectId,
-    googleCalendarId: String,
-    date: Date,
+    teacher: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    room: [{type: Schema.Types.ObjectId, ref: 'Room'}],
+    student: [{type: Schema.Types.ObjectId, ref: 'Student'}],
+    day: {
+      type: Number,
+      min: 1,
+      max: 7
+    },
+    time: String,
+    length: Number,
   }, {
     timestamps: true
   })

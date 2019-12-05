@@ -1,8 +1,10 @@
+
 module.exports = {
     createCalendar,
     manageEvent,
     isBusy, 
-    viewDay
+    viewDay,
+    dropDownTime
 }
 
 function createCalendar(days, hours){
@@ -45,3 +47,52 @@ function isBusy(calendar, day, time, length){
 function viewDay(calendar, day){
     return calendar[day]
 }
+
+
+function dropDownTime(){
+    let dropdownTime = []
+    
+    let hour = 8
+    let min = 0 
+    
+    while(min < 60 && hour < 22){
+      let newEntry = {
+        value: "",
+        text: ""
+      }
+      if(hour<10){
+        if(min===0){
+          newEntry.value = '0'+hour+'0'+min
+        }else{
+          newEntry.value = '0'+hour+min
+        }
+      }else{
+        if(min===0){
+          newEntry.value = hour + '0'+min
+        }else{
+          newEntry.value = hour + '' + min
+        }
+      }
+      if(hour > 12){
+        if(min ===0){
+        newEntry.text = hour-12 + ':' + min + '0'+' PM'
+        }else{
+        newEntry.text = hour-12 + ':' + min + ' PM'
+        }
+      }else{
+        if(min === 0){
+        newEntry.text = hour + ':' + min + '0' + ' AM'
+        }else{
+        newEntry.text = hour + ':' + min + ' AM'
+        }
+      }
+      dropdownTime.push(newEntry)
+      min += 15
+      if (min === 60){
+        hour += 1
+        min = 0
+      }
+    }
+    return(dropdownTime)
+    }
+    

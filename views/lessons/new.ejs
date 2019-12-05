@@ -1,14 +1,60 @@
 <%-include('../partials/header') %>
-<iframe src="https://calendar.google.com/calendar/b/1/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=bGlubmFla3JhZW1lckBnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%2322AA99&amp;color=%23329262&amp;color=%231F753C&amp;mode=WEEK" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-<form id="new-form" action="/lessons" method = "POST">
-<div class="form-group">
-    <label>Time:</label>
+<%if(selTchr){%>
+    <h2>this worked</h2>
+    <h2>2, <%=selTchr%></h2>
+    <h2>3, <%=selRm%></h2>
+<%}%>
+<form id="new-form" action="/lessons/selectednew" method = "GET">
+    <div class="form-group">
+        <label>Teacher:</label>
+        <select name="teacher">
+            <%teachers.forEach(function(t){%>
+                <option value="<%=t._id%>"><%=t.firstName%> <%=t.lastName%></option>
+            <%})%>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Room:</label>
+        <select name="room">
+            <%rooms.forEach(function(r){%>
+                <option value="<%=r._id%>"><%=r.name%></option>
+            <%})%>
+        </select>
+    </div>
+    <button class="btn btn-dark" type="submit">View Calendar</button>
+</form>
+    <form action="/lessons" method = "POST">
+    <div class="form-group">
+            <label>Day of the Week:</label>
+            <select name="day"> 
+                    <option value=0>Sunday</option>
+                    <option value=1>Monday</option>
+                    <option value=2>Tuesday</option>
+                    <option value=3>Wednesday</option>
+                    <option value=4>Thursday</option>
+                    <option value=5>Friday</option>
+                    <option value=6>Saturday</option>
+            </select>
+        </div>
+    <div class="form-group">
+        <label>Lesson Time:</label>
+        <%let dropDwn = clndrFuncs.dropDownTime()%>
+        <select name = "time">
+        <%for(let i = 0; i<dropDwn.length; i++){%>
+            <%let selTime = dropDwn[i]%>
+                <option value=<%=selTime.value%>><%=selTime.text%></option>
+                <%}%>
+            </select>
     <input type="date" class="form-control" name="start">
 </div>
 <div class="form-group">
-    <label>End Time:</label>
-    <input type="date" class="form-control" name="end">
+    <label>Length:</label>
+    <select name="length">
+        <option value=30>30 min</option>
+        <option value=45>45 min</option>
+        <option value=60>60 min</option>
+    </select>
 </div>
-<button class="btn btn-primary" type="submit">Submit form</button>
+<button class="btn btn-dark" type="submit">Schedule Lesson</button>
 </form>
 <%-include('../partials/footer')-%>
