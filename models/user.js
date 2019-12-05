@@ -20,6 +20,7 @@ var userSchema = new Schema({
     zip: Number,
     instruments: [],
     students:[{type: Schema.Types.ObjectId, ref: 'Student'}],
+    studios:[{type: Schema.Types.ObjectId, ref: 'Studio'}],
   }, {
     timestamps: true
   });

@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const Student = require('../models/student')
+const Studio = require('../models/studio')
 
 module.exports = {
   index,
@@ -37,9 +38,10 @@ function show(req, res){
   User.findById(req.params.id, function(err, teacher){
     Student.find({teacher: teacher._id}, function(err, students){
     if(err){res.redirect('loggedin')}
+    console.log('user',req.user)
     res.render('teachers/show', {
-      user: req.user,
       title: teacher.firstName + ' ' + teacher.lastName,
+      user: req.user,
       teacher,
       students
     })
@@ -67,11 +69,16 @@ function create(req, res){
 
 function edit(req, res){
   console.log(req.params.id)
-  User.findById(req.params.id,function(err, user){
-    console.log(user)
-    res.render('teachers/edit', {
-      user,
-      title: 'Edit '+ user.firstName +' '+ user.lastName
+  User.findById(req.params.id,function(err, teacher){
+    Studio.find({}, function(err, studios){
+
+      console.log('user', req.user)
+      res.render('teachers/edit', {
+        user: req.user,
+        title: 'Edit '+ teacher.firstName +' '+ teacher.lastName,
+        studios,
+        teacher,
+    })
     })
 })
 }

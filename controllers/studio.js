@@ -23,6 +23,28 @@ function index(req, res){
   })
 }
 
+// function teacherIndex(req, res){
+//   Studio.findById(req.user.studios)
+//   .populate('studios').exec(function(err, studio) {
+//     User.find({_id: {$in: studio.teachers}})
+//     .exec(function(err, teachers){
+//       Studio.findById(req.user.studios)
+//       .populate('rooms').exec(function(err, rooms){
+//         Room.find({_id:{$in: studio.rooms}})
+//         .exec(function(err, rooms){
+//           res.render('studios/show', {
+//             user: req.user,
+//             title: studio.name,
+//             studio, 
+//             teachers, 
+//             rooms
+//         })
+// })
+//       })
+//     })
+//   })
+// }
+
 function show(req, res){
   Studio.findById(req.params.id)
   .populate('teachers').exec(function(err, studio) {

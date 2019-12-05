@@ -1,5 +1,3 @@
-googleAPI = require('../public/js/index')
-
 module.exports = {
     create,
     new: newLesson,

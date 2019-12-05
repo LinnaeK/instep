@@ -9,7 +9,7 @@ var auth = require('../public/js/authenticate')
 
 /* GET users listing. */
 router.get('/new', auth.isAdmin, studioCntrl.new)
-router.get('/', auth.isLoggedIn, studioCntrl.index)
+router.get('/', auth.isAdmin, studioCntrl.index)
 router.get('/:id/edit', auth.isAdmin, studioCntrl.edit)
 router.get('/:id', auth.isLoggedIn, studioCntrl.show)
 router.put('/:id', auth.isAdmin, studioCntrl.update)

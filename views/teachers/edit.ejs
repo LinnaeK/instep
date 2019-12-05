@@ -1,54 +1,66 @@
 <%-include('../partials/header')%>
 <h2>Edit Teacher Profile</h2>
-<form id="new-form" action="/teachers/<%=user._id%>?_method=PUT" method = "POST" autocomplet="off">
+<form id="new-form" action="/teachers/<%=teacher._id%>?_method=PUT" method = "POST" autocomplet="off">
 <div class="form-group">
     <label>First Name:</label>
-    <input type="text" class="form-control" name="firstName" value="<%=user.firstName%>">
+    <input type="text" class="form-control" name="firstName" value="<%=teacher.firstName%>">
 </div>
 <div class="form-group">
     <label>Last Name:</label>
-    <input type="text" class="form-control" name="lastName" value="<%=user.lastName%>">
+    <input type="text" class="form-control" name="lastName" value="<%=teacher.lastName%>">
 </div>
+<%console.log('check', user.isAdmin)%>
+<%if(user.isAdmin){%>
 <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="admin" value=<%user.isAdmin%>>
+        <label class="form-check-label" for="admin" value=<%teacher.isAdmin%>>
           Administrator
         </label>
 </div>
 <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="teacher" value=<%user.isTeacher%>>
+        <label class="form-check-label" for="teacher" value=<%teacher.isTeacher%>>
           Teacher
         </label>
 </div>
+        <div class="form-group">
+                <label>studios:</label>
+                <select name="studios">
+                    <%studios.forEach(function(s){%>
+                        <option value="<%=s._id%>"><%=s.name%></option>
+                    <%})%>
+                </select>
+            </div>
+</div>
+<%}%>
 <div class="form-group">
     <label>Phone Number:</label>
-    <input type="text" class="form-control" name="phoneNum" value="<%=user.phoneNum%>">
+    <input type="text" class="form-control" name="phoneNum" value="<%=teacher.phoneNum%>">
 </div>
 <div class="form-group">
     <label>E-mail:</label>
-    <input type="text" class="form-control" name="email" value="<%=user.email%>">
+    <input type="text" class="form-control" name="email" value="<%=teacher.email%>">
 </div>
-<%console.log(user.streetAdd)%>
+<%console.log(teacher.streetAdd)%>
 <div class="form-group">
     <label>Street Address:</label>
-    <input type="text" class="form-control" name="streetAdd" value="<%=user.streetAdd%>">
+    <input type="text" class="form-control" name="streetAdd" value="<%=teacher.streetAdd%>">
 </div>
 <div class="form-group">
     <label>City:</label>
-    <input type="text" class="form-control" name="city" value="<%=user.city%>">
+    <input type="text" class="form-control" name="city" value="<%=teacher.city%>">
 </div>
 <div class="form-group">
     <label>State:</label>
-    <input type="text" class="form-control" name="state" value="<%=user.state%>">
+    <input type="text" class="form-control" name="state" value="<%=teacher.state%>">
 </div>
 <div class="form-group">
     <label>Zip:</label>
-    <input type="number" class="form-control" name="zip" value="<%=user.zip%>">
+    <input type="number" class="form-control" name="zip" value="<%=teacher.zip%>">
 </div>
 <div class="form-group">
     <label>Instruments:</label>
-    <input type="text" class="form-control" name="instruments" value="<%=user.instruments%>">
+    <input type="text" class="form-control" name="instruments" value="<%=teacher.instruments%>">
 </div>
 <button class="btn btn-dark" type="submit">Submit form</button>
 </form>
