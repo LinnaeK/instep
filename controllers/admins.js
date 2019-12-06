@@ -7,7 +7,6 @@ module.exports ={
 
 function index(req, res, next) {
   User.find({isTeacher: true}, function(err, teachers){
-    console.log(teachers)
     console.log('admin controller')
     res.render('admin/index',{
       day: 1,
@@ -21,10 +20,14 @@ function index(req, res, next) {
 
   function newDay(req, res){
     console.log('ran new day')
+    console.log('day:', req.body.day)
+    User.find({isTeacher: true}, function(err, teachers){
     res.render('admin/index',{
       day: req.body.day,
       user: req.user,
       name: req.query.name,
-      title: 'Admin Page'
+      title: 'Admin Page',
+      teachers
+    })
     })
   }

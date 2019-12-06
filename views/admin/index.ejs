@@ -2,21 +2,21 @@
 <div class = "fullwidth">
 <h1 class=cntr>Studio Tracker</h1>
 <div class="cntr lessmargin">
-        <form action="/loggedin/admin" method="POST"></form>
-<div class="form-group">
-        <label>Day of the Week:</label>
-        <select name="day"> 
-                <option value='0'>Sunday</option>
-                <option value='1' selected>Monday</option>
-                <option value='2'>Tuesday</option>
-                <option value='3'>Wednesday</option>
-                <option value='4'>Thursday</option>
-                <option value='5'>Friday</option>
-                <option value='6'>Saturday</option>
-        </select>
-        <button class="btn btn-dark" type="submit">View Day</button>
-    </div>
-</form>
+        <form id="new-form" action="/loggedin/admin/newday" method = "POST">
+            <div class="form-group">
+            <label>Day of the Week:</label>
+            <select name="day"> 
+                    <option value='0'>Sunday</option>
+                    <option value='1' selected>Monday</option>
+                    <option value='2'>Tuesday</option>
+                    <option value='3'>Wednesday</option>
+                    <option value='4'>Thursday</option>
+                    <option value='5'>Friday</option>
+                    <option value='6'>Saturday</option>
+                </select>
+                <button class="btn btn-dark" type="submit">View Day</button>
+            </div>
+    </form>
 </div>
 <div class="teacher-days">
     <div class = "time">
@@ -45,7 +45,7 @@
                         <%for(let i = 32; i<88; i++){%>
                             <%if(selTchr.calendar[parseInt(day)][i]){%>
                                 <%let entry = selTchr.calendar[parseInt(day)][i]%>
-                                <div class='busy'><%=entry.student%></div>
+                                <div class='busy'><%=entry.student%>Student</div>
                                 <%}else{%>
                                     <div class='free'> hidden  </div>
                                     <%}%>        

@@ -8,7 +8,7 @@ var auth = require('../public/js/authenticate')
 
 /* GET users listing. */
 router.get('/loggedin/admin', auth.isAdmin, adminsCntrl.index);
-router.post('/loggedin/admin', auth.isAdmin, adminsCntrl.newday);
+router.post('/loggedin/admin/newday', auth.isAdmin, adminsCntrl.newday);
 router.get('/loggedin/teacher', auth.isLoggedIn, teachersCntrl.dailyview);
 
 
