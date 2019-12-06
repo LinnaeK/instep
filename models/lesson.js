@@ -7,7 +7,7 @@ var lessonSchema = new Schema({
     student: [{type: Schema.Types.ObjectId, ref: 'Student'}],
     day: {
       type: Number,
-      min: 1,
+      min: 0,
       max: 7
     },
     time: String,

@@ -1,36 +1,13 @@
 clndrFuncs = require('../public/js/calendar')
 User = require('../models/user')
 Room = require('../models/room')
+Lesson = require('../models/lesson')
+Student = require('../models/student')
 
 module.exports = {
-    create,
     new: newLesson,
     newLsn,
-}
-
-function newLsn(req, res){
-    User.find({isTeacher: true}, function(err, teachers){
-        User.find({_id: req.query.teacher}, function(err, selTchr){
-            Room.find({}, function(err, rooms){
-                Room.find({_id:req.query.room}, function(err, selRm){
-                    console.log(selTchr, selRm)
-                    console.log(req.query.teacher)
-                    console.log(req.params.room)
-                    res.render('lessons/new', {
-                        title: 'Create Lesson',
-                        selTchr,
-                        selRm,
-                        user: req.user,
-                        clndrFuncs,
-                        teachers,
-                        rooms
-                    })
-
-                })
-
-        })
-        })
-    })
+    create,
 }
 
 function newLesson(req, res){
@@ -43,22 +20,115 @@ function newLesson(req, res){
                 user: req.user,
                 clndrFuncs,
                 teachers,
-                rooms
+                rooms,
+                student: req.params.student
             })
         })
 
     })
 }
 
-function create(req, res){
-    let newLesson = {
-        'start': {
-            dateTime: req.body.start, 
-        },
-        'end': {
-            dateTime: req.body.end
-        }
-    }
-    console.log(newLesson)
-    googleAPI.isBusy(newLesson)
+function newLsn(req, res){
+    User.find({isTeacher: true}, function(err, teachers){
+        User.findOne({_id: req.query.teacher}, function(err, selTchr){
+            Room.find({}, function(err, rooms){
+                Room.findById(req.query.room, function(err, selRm){
+                    Student.findById(req.params.student, function(err, student){
+                        res.render('lessons/new', {
+                            title: 'Create Lesson',
+                            selTchr,
+                            selRm,
+                            user: req.user,
+                            clndrFuncs,
+                            teachers,
+                            rooms,
+                            student
+                        })
+
+                    })
+
+                })
+
+        })
+        })
+    })
+}
+
+
+// function create(req, res){
+//     for (let key in req.body) { // any empty elements in the submission form remove them
+//         if (req.body[key] === '') delete req.body[key];
+//       }
+//     var lesson = new Lesson(req.body) // instanciate the new lesson
+//     lesson.save(function(err){ // save the lesson
+//         lesson.teacher = req.params.teacher //put teacher id in the lesson
+//         console.log(lesson)
+//         User.findById(req.params.teacher, function(err, teacher){ // get the teacer by id
+//             console.log('in find ', teacher)
+//             let updatedCalendar = clndrFuncs.manageEvent(lesson, teacher.calendar, lesson.day, lesson.time, lesson.length) //update teachers calendar
+//             console.log('UPDATED CAL', updatedCalendar)
+//             teacher.calendar = updatedCalendar // set the teachers calendar to the new calendar
+//             console.log('TEACHER CAL:', teacher.calendar)
+//             teacher.save(function(error, teacher){ // save the the teacher
+//                 if(error) {
+//                     console.error(error)
+//                     res.status(500)
+//                     res.json(error)
+//                 }
+//                 console.log('IN SAVE:', teacher.calendar.flat().filter(item => !!item))
+//                 res.redirect('/loggedin/admin') 
+//             })
+        
+//         })
+//     })
+// }
+// TODO: all of the below in a function 
+// any empty elements in the submission form remove them
+// instanciate the new lesson
+// save the lesson
+// put teacher id in the lesson
+// get the teacer by id
+// set the teachers calendar to the new calendar
+// save the the teacher
+
+async function create(req, res) {
+  try {
+    console.log(req.params)
+    console.log(req.body)
+
+    const roomSelected = req.params.room
+    console.log("ROOM", roomSelected)
+    const {day, time, length} = req.body
+    const teacher = req.params.teacher
+    const room = req.params.room._id
+    const lesson = new Lesson({
+        day,
+        time,
+        length
+    })
+    lesson.teacher.push(teacher)
+    lesson.room.push(room)
+    const savedLesson = await lesson.save()
+    console.log(savedLesson)
+
+    const teach = await User.findById(teacher)
+    console.log(teach)
+
+    teach.calendar = clndrFuncs.manageEvent(savedLesson, teach.calendar, lesson.day, lesson.time, lesson.length)
+    teach.markModified('calendar')
+    const result = await teach.save()
+    console.log(result)
+
+    // const roomUpdated = await Room.findById(roomSelected)
+    // roomUpdated.calendar = clndrFuncs.manageEvent(savedLesson, room.calendar, lesson.day, lesson.time, lesson.length)
+    // roomUpdated.markModified('calendar')
+    // const roomResult = await teach.save()
+    // console.log(roomResult)
+
+    res.redirect('/loggedin/admin')
+  } catch (error) {
+      console.error(error)
+      res.status(500)
+      res.json(error) // change this to a string before its put in prod
+  }
 }

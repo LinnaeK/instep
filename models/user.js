@@ -21,7 +21,7 @@ var userSchema = new Schema({
     instruments: [],
     students:[{type: Schema.Types.ObjectId, ref: 'Student'}],
     studios:[{type: Schema.Types.ObjectId, ref: 'Studio'}],
-    calendar: []
+    calendar: Array
   }, {
     timestamps: true
   });

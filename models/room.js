@@ -5,7 +5,7 @@ var roomSchema = new Schema({
     name: String,
     lessons: [Schema.Types.ObjectId],
     studio: [{type: Schema.Types.ObjectId, ref: 'Studio'}],
-    calendar: []
+    calendar: Array,
   }, {
     timestamps: true
   })

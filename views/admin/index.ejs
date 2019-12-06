@@ -1,3 +1,59 @@
 <%-include('../partials/header')-%>
-<h2>admin page</h2>
-<%-include('../partials/footer')-%>
+<div class = "fullwidth">
+<h1 class=cntr>Studio Tracker</h1>
+<div class="cntr lessmargin">
+        <form action="/loggedin/admin" method="POST"></form>
+<div class="form-group">
+        <label>Day of the Week:</label>
+        <select name="day"> 
+                <option value='0'>Sunday</option>
+                <option value='1' selected>Monday</option>
+                <option value='2'>Tuesday</option>
+                <option value='3'>Wednesday</option>
+                <option value='4'>Thursday</option>
+                <option value='5'>Friday</option>
+                <option value='6'>Saturday</option>
+        </select>
+        <button class="btn btn-dark" type="submit">View Day</button>
+    </div>
+</form>
+</div>
+<div class="teacher-days">
+    <div class = "time">
+        <h3 class = whiteHide>whitespace</h3>
+        <%let time = 8%>
+        <%let postTime = ":00 AM"%>
+        <%for(let n=32; n<88; n++){%>
+            <%if(!(n%4)){%>
+                <div><%=time + postTime%></div>
+                <%time+=1%>
+                <%if(time==13){%>
+                    <%time-=12%>
+                    <%postTime = ":00 PM"%>
+                    <%}%>
+                    <%}else{%>
+                        <div class="whiteHide">hide</div>
+                        <%}%>
+                        <%}%>
+                       
+                        </div>
+                        <%teachers.forEach(function(selTchr){%>
+                            <%if(selTchr.calendar.length){%> 
+                                <div class = "teacherTime">
+                                <h3><%=selTchr.firstName + ' ' + selTchr.lastName%></h3>
+                                    
+                        <%for(let i = 32; i<88; i++){%>
+                            <%if(selTchr.calendar[parseInt(day)][i]){%>
+                                <%let entry = selTchr.calendar[parseInt(day)][i]%>
+                                <div class='busy'><%=entry.student%></div>
+                                <%}else{%>
+                                    <div class='free'> hidden  </div>
+                                    <%}%>        
+                                    <%}%>
+                                    </div>
+                                    <%}%>
+                                    <%})%>
+                                </div>
+
+                            </div>
+                                <%-include('../partials/footer')-%>

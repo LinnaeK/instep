@@ -104,3 +104,51 @@ main {
 .italic {
   font-style: italic;
 }
+
+.full-cal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 5px;
+}
+
+.busy {
+  background-color: #800020;
+  color:#ffffff;
+}
+
+.free {
+  background-color: #ADB295;
+  color: #ADB295; 
+
+}
+
+.teacher-days{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  width: 100%;
+}
+
+.whiteHide{
+  color: white;
+
+}
+
+.time {
+  text-align: end;
+}
+
+.cntr{
+  display: flex;
+justify-content: center;
+margin: 5vh;
+}
+
+.fullwidth {
+  width: 100%;
+  margin: 0 0 0 -15vh
+}
+
+.lessmargin {
+  margin: 0 0 0 -25vh
+}

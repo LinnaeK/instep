@@ -2,6 +2,7 @@ const User = require('../models/user')
 const Student = require('../models/student')
 const Room = require('../models/room')
 const Studio = require('../models/studio')
+const clndrFuncs = require('../public/js/calendar')
 
 module.exports = {
   index,
@@ -53,8 +54,7 @@ function create(req, res){
     if (req.body[key] === '') delete req.body[key];
   }
   var room = new Room(req.body)
-  console.log(req.body)
-  console.log(room)
+  room.calendar = clndrFuncs.createCalendar(7, 24)
   room.studio = req.params.id
   console.log(room)
   room.save(function(err){

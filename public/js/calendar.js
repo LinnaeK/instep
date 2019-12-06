@@ -1,3 +1,4 @@
+// lets move this to a utils file 
 
 module.exports = {
     createCalendar,
@@ -6,10 +7,15 @@ module.exports = {
     viewDay,
     dropDownTime
 }
-
-function createCalendar(days, hours){
+/**
+ * 
+ * @param {number} days number of days
+ * @param {number} hours number of hours
+ * @return a calendar like array
+ */
+function createCalendar(days, hours){ // think of using the Array constructor instead of two for loops
     let calendar = []
-    for(let i = 0; i < days; i++){
+    for(let i = 0; i < days; i++){ //this could be a forEach 
         let day = []
         for(let i = 0; i< hours*4; i++){
             day.push(null)

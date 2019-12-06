@@ -1,10 +1,34 @@
 <%-include('../partials/header') %>
 <%if(selTchr){%>
-    <h2>this worked</h2>
-    <h2>2, <%=selTchr%></h2>
-    <h2>3, <%=selRm%></h2>
-<%}%>
-<form id="new-form" action="/lessons/selectednew" method = "GET">
+    <h2>Teaching Schedule for <%=selTchr.firstName%> <%=selTchr.lastName%></h2>
+    <br><br>
+    <div class=full-cal>
+        <%let time = 8%>
+        <%let postTime = ":00 AM"%>
+        <%for(let n=32; n<88; n++){%>
+            <%if(!(n%4)){%>
+                <div><%=time + postTime%></div>
+                <%time+=1%>
+                <%if(time==13){%>
+                <%time-=12%>
+                <%postTime = ":00 PM"%>
+            <%}%>
+            <%}else{%>
+                <div></div>
+            <%}%>
+            <%console.log(student)%>
+                <%for(let i = 0; i<selTchr.calendar.length; i++){%>
+                                    <%if(selTchr.calendar[i][n]){%>
+                                        <div class='busy'><%=student.firstName + ' ' +student.lastName[0]%></div>
+                                        <%}else{%>
+                                            <div class='free'> hidden  </div>
+                                            <%}%>        
+                                <%}%>
+                            <%}%>
+                        <%}%>
+    </div>
+
+<form id="new-form" action="/lessons/<%=student%>/" method = "GET" class = "selectTeacher">
     <div class="form-group">
         <label>Teacher:</label>
         <select name="teacher">
@@ -21,19 +45,22 @@
             <%})%>
         </select>
     </div>
-    <button class="btn btn-dark" type="submit">View Calendar</button>
+    <button class="btn btn-dark selectTeacher" type="submit">View Calendar</button>
 </form>
-    <form action="/lessons" method = "POST">
+
+
+<%if(selTchr){%>
+<form id="new-form" action="/lessons/<%=selTchr.id%>/<%=selRm._id%>/<%=student._id%>" method = "POST" class= "chooseLesson">  
     <div class="form-group">
             <label>Day of the Week:</label>
             <select name="day"> 
-                    <option value=0>Sunday</option>
-                    <option value=1>Monday</option>
-                    <option value=2>Tuesday</option>
-                    <option value=3>Wednesday</option>
-                    <option value=4>Thursday</option>
-                    <option value=5>Friday</option>
-                    <option value=6>Saturday</option>
+                    <option value='0'>Sunday</option>
+                    <option value='1'>Monday</option>
+                    <option value='2'>Tuesday</option>
+                    <option value='3'>Wednesday</option>
+                    <option value='4'>Thursday</option>
+                    <option value='5'>Friday</option>
+                    <option value='6'>Saturday</option>
             </select>
         </div>
     <div class="form-group">
@@ -42,19 +69,20 @@
         <select name = "time">
         <%for(let i = 0; i<dropDwn.length; i++){%>
             <%let selTime = dropDwn[i]%>
-                <option value=<%=selTime.value%>><%=selTime.text%></option>
+                <option value='<%=selTime.value%>'><%=selTime.text%></option>
                 <%}%>
             </select>
-    <input type="date" class="form-control" name="start">
 </div>
 <div class="form-group">
     <label>Length:</label>
     <select name="length">
-        <option value=30>30 min</option>
-        <option value=45>45 min</option>
-        <option value=60>60 min</option>
+        <option value='30'>30 min</option>
+        <option value='45'>45 min</option>
+        <option value='60'>60 min</option>
     </select>
 </div>
-<button class="btn btn-dark" type="submit">Schedule Lesson</button>
+<button class="btn btn-dark chooseLesson" type="submit">Schedule Lesson</button>
+<%}%>
 </form>
+
 <%-include('../partials/footer')-%>

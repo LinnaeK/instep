@@ -1,3 +1,5 @@
+// lets move this into a utils folder
+
 const User = require('../../models/user')
 module.exports = {
     isLoggedIn,
