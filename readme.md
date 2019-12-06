@@ -1,4 +1,5 @@
-# In Step
+
+# [In Step](https://instepmusicstudiotracker.herokuapp.com/)
 
 ## User Stories
 
@@ -35,4 +36,14 @@
 - update my own personal teacher profile
 - I want to access studio, profile, student, and home views through links on a header
 - see students in a  drop down view
+
+![wireframe](/public/images/IMG_0001.jpg)
+![wireframe](/public/images/IMG_0002.jpg)
+![wireframe](/public/images/IMG_0003.jpg)
+![wireframe](/public/images/IMG_0004.jpg)
+![wireframe](/public/images/IMG_0005.jpg)
+![wireframe](/public/images/IMG_0006.jpg)
+![wireframe](/public/images/IMG_0007.jpg)
+![wireframe](/public/images/IMG_0008.jpg)
+![ERD](/public/images/IMG_0010.jpg)
 
