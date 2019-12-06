@@ -93,13 +93,11 @@ function newLsn(req, res){
 
 async function create(req, res) {
   try {
-    console.log(req.params)
-    console.log(req.body)
-
     const roomSelected = req.params.room
-    console.log("ROOM", roomSelected)
     const {day, time, length} = req.body
     const teacher = req.params.teacher
+    console.log(req.params.student)
+    // const student = Student.findById(req.params.student)
     const room = req.params.room._id
     const lesson = new Lesson({
         day,
@@ -108,16 +106,14 @@ async function create(req, res) {
     })
     lesson.teacher.push(teacher)
     lesson.room.push(room)
+    // lesson.student.push(student)
     const savedLesson = await lesson.save()
-    console.log(savedLesson)
 
     const teach = await User.findById(teacher)
-    console.log(teach)
 
     teach.calendar = clndrFuncs.manageEvent(savedLesson, teach.calendar, lesson.day, lesson.time, lesson.length)
     teach.markModified('calendar')
     const result = await teach.save()
-    console.log(result)
 
     // const roomUpdated = await Room.findById(roomSelected)
     // roomUpdated.calendar = clndrFuncs.manageEvent(savedLesson, room.calendar, lesson.day, lesson.time, lesson.length)
